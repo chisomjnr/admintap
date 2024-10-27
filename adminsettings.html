@@ -15,6 +15,8 @@
     href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap"
     rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
   </head>
@@ -173,14 +175,194 @@
  
 
 
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: poppins, sans-serif;
+}
+
+body {
+    background-color: #f5f5f7;
+}
+
+.container {
+    width: 100%;
+    margin: 20px auto;
+}
+
+h1 {
+    text-align: left;
+    font-size: 35px;
+    color: #333;
+    font-family: poppins, sans-serif;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    width: 100%;
+    font-size: 18px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: left;
+}
+
+.icon {
+    font-size: 30px;
+    color: orange;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 25px;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 18px;
+    color: #666;
+}
+
+
+
+</style>
 
 
 
 
-
-
-
-
+<div class="container">
+    <h1>System Settings</h1>
+    <div class="search-bar">
+        <input type="text" placeholder="Search...">
+    </div>
+    <div class="grid">
+        <div class="card">
+            <i class="fas fa-cogs icon"></i>
+            <h2>General Setting</h2>
+            <p>Configure the fundamental information of the site.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-sliders-h icon"></i>
+            <h2>System Configuration</h2>
+            <p>Control all of the basic modules of the system.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-image icon"></i>
+            <h2>Logo and Favicon</h2>
+            <p>Upload your logo and favicon here.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-bell icon"></i>
+            <h2>Notification Setting</h2>
+            <p>Control and configure overall notification elements of the system.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-credit-card icon"></i>
+            <h2>Payment Gateways</h2>
+            <p>Configure automatic or manual payment gateways to accept payment from users.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-university icon"></i>
+            <h2>Withdrawals Methods</h2>
+            <p>Setup manual withdrawal methods for users of the system to make payout requests through those methods.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-search icon"></i>
+            <h2>SEO Configuration</h2>
+            <p>Configure meta title, meta description, meta keywords, etc. to make the system SEO-friendly.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-desktop icon"></i>
+            <h2>Manage Frontend</h2>
+            <p>Control all of the frontend contents of the system.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-file-alt icon"></i>
+            <h2>Manage Pages</h2>
+            <p>Control dynamic and static pages of the system.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-file-code icon"></i>
+            <h2>Manage Templates</h2>
+            <p>Control dynamic and static templates of the system.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-id-card icon"></i>
+            <h2>KYC Setting</h2>
+            <p>Configure the dynamic input field to collect client information if needed.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-ad icon"></i>
+            <h2>Ads Setting</h2>
+            <p>Configure your ads of the system here.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-sign-in-alt icon"></i>
+            <h2>Social Login Setting</h2>
+            <p>Provide the information needed to use the login system by social media.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-shield-alt icon"></i>
+            <h2>Policy Pages</h2>
+            <p>Configure your policy and terms of the system here.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-code icon"></i>
+            <h2>Custom CSS</h2>
+            <p>Write custom CSS here to modify frontend styles if needed.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-language icon"></i>
+            <h2>Language</h2>
+            <p>Configure your required languages and keywords to localize the system.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-puzzle-piece icon"></i>
+            <h2>Extensions</h2>
+            <p>Manage extensions of the system to extend features.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-wrench icon"></i>
+            <h2>Maintenance Mode</h2>
+            <p>Enable or disable maintenance mode when required.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-cookie-bite icon"></i>
+            <h2>GDPR Cookie</h2>
+            <p>Set GDPR Cookie policy if required, asking visitors to accept if enabled.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-sitemap icon"></i>
+            <h2>Sitemap XML</h2>
+            <p>Insert the sitemap XML here to enhance SEO performance.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-robot icon"></i>
+            <h2>Robots txt</h2>
+            <p>Insert the robots.txt to enhance bot crawlers' interaction with the website.</p>
+        </div>
+    </div>
+</div>
 
 
 
