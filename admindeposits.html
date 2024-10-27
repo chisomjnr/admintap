@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Tapblox | Admin Dashboard</title>
+
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <link
+    href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <div class="grid-container">
+
+      <!-- Header -->
+      <header class="header">
+        <div class="menu-icon" onclick="openSidebar()">
+          <span class="material-icons-outlined">menu</span>
+        </div>
+        <div class="header-left">
+          <span class="material-icons-outlined">search</span>
+        </div>
+        <div class="header-right">
+          <span class="material-icons-outlined">notifications</span>
+          <span class="material-icons-outlined">email</span>
+          <span class="material-icons-outlined">account_circle</span>
+        </div>
+      </header>
+      <!-- End Header -->
+
+      
+
+      <!-- Sidebar -->
+      <aside id="sidebar">
+        <div class="sidebar-title">
+          <div class="sidebar-brand">
+            <span class="material-icons-outlined"></span> <strong style="color: white;">Tapblox Admin<strong style="color: orange;">.</strong> </strong>
+          </div>
+          <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+        </div>
+
+        <ul class="sidebar-list">
+          <li   class="sidebar-list-item">
+            <a href="admindashboard.html">
+              <span class="material-icons-outlined">dashboard</span> Dashboard
+            </a>
+          </li>
+          <li  class="sidebar-list-item">
+            <a href="adminuser.html">
+              <span class="material-icons-outlined">person</span> User Management
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="admintask.html">
+              <span class="material-icons-outlined">fact_check</span> Task Management
+            </a>
+          </li>
+        
+          <li  class="sidebar-list-item">
+            <a href="adminnotification.html">
+              <span class="material-icons-outlined">alarm</span> Notifications
+            </a>
+          </li>
+
+          <li id="active" class="sidebar-list-item">
+            <a href="admindeposits.html">
+              <span class="material-icons-outlined">account_balance</span> Deposits
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="adminwithdrawals.html">
+              <span class="material-icons-outlined">account_balance_wallet</span> Withdrawals
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="adminreport.html">
+              <span class="material-icons-outlined">bar_chart</span> Report
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="adminextra.html">
+              <span class="material-icons-outlined">more_horiz</span> Extra
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="adinsupport.html">
+              <span class="material-icons-outlined">support_agent</span> Support Tickets
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="adminptc.html">
+              <span class="material-icons-outlined">assessment</span> PTC Reports
+            </a>
+          </li>
+          
+          <li class="sidebar-list-item">
+            <a href="adminreferral.html">
+              <span class="material-icons-outlined">group_add</span> Referral Commission
+            </a>
+          </li>          
+
+          <li class="sidebar-list-item">
+            <a href="adminanalysis.html">
+              <span class="material-icons-outlined">poll</span> Analysis
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="adminsettings.html">
+              <span class="material-icons-outlined">settings</span> System Settings
+            </a>
+          </li>
+
+          <li class="sidebar-list-item">
+            <a href="#"  id="logout-btn">
+              <span class="material-icons-outlined">logout</span> Logout
+            </a>
+          </li>
+        </ul>
+      </aside>
+      <!-- End Sidebar -->
+
+      <script>
+        // Add event listener to the logout button
+        document.getElementById('logout-btn').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default link behavior
+    
+            // Clear login status from sessionStorage
+            sessionStorage.removeItem('isLoggedIn');
+    
+            // Optionally, clear localStorage if used for persistent login
+            // localStorage.removeItem('isLoggedIn');
+    
+            // Redirect to adminlogin.html
+            window.location.href = 'adminlogin.html';
+        });
+    </script>
+
+
+
+
+
+<script>
+  // Check if the user is logged in
+  window.onload = function() {
+      const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+      
+      if (isLoggedIn !== 'true') {
+          // Redirect to adminlogin.html if not logged in
+          window.location.href = 'adminlogin.html';
+      }
+  };
+</script>
+
+
+
+
+
+
+<script src="admin.js"></script>
+
+
+      <!-- Main -->
+      <main class="main-container">
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <style>
+            * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f5f5f7;
+}
+
+.container {
+    width: 100%;
+    margin: 20px auto;
+    font-family: poppins;
+}
+
+h1 {
+    text-align: left;
+    font-size: 34px;
+    color: #333;
+    margin-bottom: 20px;
+    font-family: poppins;
+}
+
+.summary {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.summary-box {
+    background-color: white;
+    padding: 15px;
+    width: 22%;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    font-family: poppins;
+}
+
+.summary-box p:first-child {
+    font-size: 20px;
+    color: orange;
+}
+
+.summary-box p:last-child {
+    font-size: 14px;
+    color: #666;
+}
+
+.filters {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.filters input {
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-left: 10px;
+    background: rgb(255, 236, 201);
+    font-family: poppins;
+    font-size: 18px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    width: 300px;
+
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-family: poppins;
+    background-color: white;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+    background-color: #000000;
+    color: white;
+    font-family: poppins;
+}
+
+th, td {
+    padding: 18px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    font-size: 16px;
+    font-family: poppins;
+}
+
+td {
+    font-size: 16px;
+    font-family: poppins;
+}
+
+td button {
+    padding: 8px 12px;
+    background-color: white;
+    color: #3a49a4;
+    border: 1px solid #3a49a4;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+td button:hover {
+    background-color: #3a49a4;
+    color: white;
+}
+
+        </style>
+
+
+
+
+
+        <div class="container">
+            <h1>Deposit History</h1>
+            <div class="summary">
+                <div class="summary-box">
+                    <p>N250,692.00 NGN</p>
+                    <p>Successful Deposit</p>
+                </div>
+                <div class="summary-box">
+                    <p>N422,078.00 NGN</p>
+                    <p>Pending Deposit</p>
+                </div>
+                <div class="summary-box">
+                    <p>N0.00 NGN</p>
+                    <p>Rejected Deposit</p>
+                </div>
+                <div class="summary-box">
+                    <p>N1,022,622.76 NGN</p>
+                    <p>Initiated Deposit</p>
+                </div>
+            </div>
+    
+            <div class="filters">
+                <input type="text" placeholder=" Search Username / TRX">
+                <p></p>
+                <input type="text" placeholder="Search Start Date - End Date">
+            </div>
+    
+            <table>
+                <thead>
+                    <tr>
+                        <th>Gateway | Transaction</th>
+                        <th>Initiated</th>
+                        <th>User</th>
+                        <th>Amount</th>
+                        <th>Conversion</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>BTCPay <br> 7KOT2ZVWNL7</td>
+                        <td>2024-10-27 08:58 PM <br> 1 hour ago</td>
+                        <td>@djihaxd</td>
+                        <td>N5.00 NGN + N1.03 NGN = N6.03 NGN</td>
+                        <td>N1.00 NGN = 0.02 LTC <br> 0.09 LTC</td>
+                        <td>Initiated</td>
+                        <td><button>Details</button></td>
+                    </tr>
+                    <tr>
+                        <td>Coinbase Commerce <br> 2RSTYX25UD7K</td>
+                        <td>2024-10-27 02:46 PM <br> 7 hours ago</td>
+                        <td>@tonnnzl</td>
+                        <td>N100.00 NGN + N11.00 NGN = N111.00 NGN</td>
+                        <td>N1.00 NGN = 10.00 NGN <br> 1,110.00 NGN</td>
+                        <td>Initiated</td>
+                        <td><button>Details</button></td>
+                    </tr>
+                    <tr>
+                        <td>Paypal <br> UGAAB08SDSJE</td>
+                        <td>2024-10-25 08:12 PM <br> 2 days ago</td>
+                        <td>@felipebarcelos7</td>
+                        <td>N50.00 NGN + N1.50 NGN = N51.50 NGN</td>
+                        <td>N1.00 NGN = 1.00 NGN <br> 51.50 NGN</td>
+                        <td>Initiated</td>
+                        <td><button>Details</button></td>
+                    </tr>
+                    <tr>
+                        <td>BTCPay <br> 3HG7CJ5M9HPB</td>
+                        <td>2024-10-25 03:35 AM <br> 2 days ago</td>
+                        <td>@mjaymannie01</td>
+                        <td>N100.00 NGN + N1.50 NGN = N101.50 NGN</td>
+                        <td>N1.00 NGN = 0.02 LTC <br> 1.52 LTC</td>
+                        <td>Initiated</td>
+                        <td><button>Details</button></td>
+                    </tr>
+                    <tr>
+                        <td>Blockchain <br> WOL121I3CO66</td>
+                        <td>2024-10-25 03:35 AM <br> 2 days ago</td>
+                        <td>@mjaymannie01</td>
+                        <td>N1.00 NGN + N11.01 NGN = N12.01 NGN</td>
+                        <td>N1.00 NGN = 1.00 BTC <br> 12.01 BTC</td>
+                        <td>Initiated</td>
+                        <td><button>Details</button></td>
+                    </tr>
+                    <tr>
+                        <td>PayStack <br> TK4H596AVCP7</td>
+                        <td>2024-10-25 03:34 AM <br> 2 days ago</td>
+                        <td>@mjaymannie01</td>
+                        <td>N100.00 NGN + N2.00 NGN = N102.00 NGN</td>
+                        <td>N1.00 NGN = 420.00 NGN <br> 42,840.00 NGN</td>
+                        <td>Initiated</td>
+                        <td><button>Details</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+      </main>
+      <!-- End Main -->
+
+    </div>
+
+    <!-- Scripts -->
+    <!-- ApexCharts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/scripts.js"></script>
+  </body>
+</html>
