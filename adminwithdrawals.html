@@ -179,6 +179,231 @@
 
 
 
+        <style>
+          * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f5f5f7;
+}
+
+.container {
+  width: 100%;
+  margin: 20px auto;
+  font-family: poppins;
+}
+
+h1 {
+  text-align: left;
+  font-size: 34px;
+  color: #333;
+  margin-bottom: 20px;
+  font-family: poppins;
+}
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.summary-box {
+  background-color: white;
+  padding: 15px;
+  width: 22%;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  font-family: poppins;
+}
+
+.summary-box p:first-child {
+  font-size: 20px;
+  color: orange;
+}
+
+.summary-box p:last-child {
+  font-size: 14px;
+  color: #666;
+}
+
+.filters {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.filters input {
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin-left: 10px;
+  background: rgb(255, 236, 201);
+  font-family: poppins;
+  font-size: 18px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  width: 300px;
+
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-family: poppins;
+  background-color: white;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+  background-color: #000000;
+  color: white;
+  font-family: poppins;
+}
+
+th, td {
+  padding: 18px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  font-size: 16px;
+  font-family: poppins;
+}
+
+td {
+  font-size: 16px;
+  font-family: poppins;
+}
+
+td button {
+  padding: 8px 12px;
+  background-color: white;
+  color: #3a49a4;
+  border: 1px solid #3a49a4;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+td button:hover {
+  background-color: #3a49a4;
+  color: white;
+}
+
+      </style>
+
+
+
+
+
+      <div class="container">
+          <h1>Withdrawal History</h1>
+          <div class="summary">
+              <div class="summary-box">
+                  <p>N250,692.00 NGN</p>
+                  <p>Successful Withdrawal</p>
+              </div>
+              <div class="summary-box">
+                  <p>N422,078.00 NGN</p>
+                  <p>Pending Withdrawal</p>
+              </div>
+              <div class="summary-box">
+                  <p>N0.00 NGN</p>
+                  <p>Rejected Withdrawal</p>
+              </div>
+              <div class="summary-box">
+                  <p>N1,022,622.76 NGN</p>
+                  <p>Initiated Withdrawal</p>
+              </div>
+          </div>
+  
+          <div class="filters">
+              <input type="text" placeholder=" Search Username / TRX">
+              <p></p>
+              <input type="text" placeholder="Search Start Date - End Date">
+          </div>
+  
+          <table>
+              <thead>
+                  <tr>
+                      <th>Gateway | Transaction</th>
+                      <th>Initiated</th>
+                      <th>User</th>
+                      <th>Amount</th>
+                      <th>Conversion</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>BTCPay <br> 7KOT2ZVWNL7</td>
+                      <td>2024-10-27 08:58 PM <br> 1 hour ago</td>
+                      <td>@djihaxd</td>
+                      <td>N5.00 NGN + N1.03 NGN = N6.03 NGN</td>
+                      <td>N1.00 NGN = 0.02 LTC <br> 0.09 LTC</td>
+                      <td>Initiated</td>
+                      <td><button>Details</button></td>
+                  </tr>
+                  <tr>
+                      <td>Coinbase Commerce <br> 2RSTYX25UD7K</td>
+                      <td>2024-10-27 02:46 PM <br> 7 hours ago</td>
+                      <td>@tonnnzl</td>
+                      <td>N100.00 NGN + N11.00 NGN = N111.00 NGN</td>
+                      <td>N1.00 NGN = 10.00 NGN <br> 1,110.00 NGN</td>
+                      <td>Initiated</td>
+                      <td><button>Details</button></td>
+                  </tr>
+                  <tr>
+                      <td>Paypal <br> UGAAB08SDSJE</td>
+                      <td>2024-10-25 08:12 PM <br> 2 days ago</td>
+                      <td>@felipebarcelos7</td>
+                      <td>N50.00 NGN + N1.50 NGN = N51.50 NGN</td>
+                      <td>N1.00 NGN = 1.00 NGN <br> 51.50 NGN</td>
+                      <td>Initiated</td>
+                      <td><button>Details</button></td>
+                  </tr>
+                  <tr>
+                      <td>BTCPay <br> 3HG7CJ5M9HPB</td>
+                      <td>2024-10-25 03:35 AM <br> 2 days ago</td>
+                      <td>@mjaymannie01</td>
+                      <td>N100.00 NGN + N1.50 NGN = N101.50 NGN</td>
+                      <td>N1.00 NGN = 0.02 LTC <br> 1.52 LTC</td>
+                      <td>Initiated</td>
+                      <td><button>Details</button></td>
+                  </tr>
+                  <tr>
+                      <td>Blockchain <br> WOL121I3CO66</td>
+                      <td>2024-10-25 03:35 AM <br> 2 days ago</td>
+                      <td>@mjaymannie01</td>
+                      <td>N1.00 NGN + N11.01 NGN = N12.01 NGN</td>
+                      <td>N1.00 NGN = 1.00 BTC <br> 12.01 BTC</td>
+                      <td>Initiated</td>
+                      <td><button>Details</button></td>
+                  </tr>
+                  <tr>
+                      <td>PayStack <br> TK4H596AVCP7</td>
+                      <td>2024-10-25 03:34 AM <br> 2 days ago</td>
+                      <td>@mjaymannie01</td>
+                      <td>N100.00 NGN + N2.00 NGN = N102.00 NGN</td>
+                      <td>N1.00 NGN = 420.00 NGN <br> 42,840.00 NGN</td>
+                      <td>Initiated</td>
+                      <td><button>Details</button></td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+
+
+
+
+
 
 
 
