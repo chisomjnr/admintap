@@ -271,282 +271,411 @@
 
 
 
+<!-- Main Content Area -->
+<main>
+  <div class="content-header">
+      <h2>Tasks & Challenges</h2>
+      <button class="add-btn" id="openPopupBtn"><i class="bx bx-upload"></i> Add New Task</button>
+  </div>
 
-        <!-- Main Content Area -->
-        <main>
-            <div class="content-header">
-                <h2>Tasks & Challenges</h2>
-                <button class="add-btn" id="openPopupBtn"><i class="bx bx-upload"></i> Add New Task</button>
-            </div>
-        
-            <!-- Customer Accounts Table -->
-            <div class="table-wrapper">
-                <table class="accounts-table" id="accountsTable">
-                    <thead>
-                        <tr>
-                            <th><input type="checkbox"></th>
-                            <th>Task ID</th>
-                            <th>Task</th>
-                          -
-                            <th>Time Created</th>
-                            <th>Date Created</th>
-                            <th>Task Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>TASK001</td>
-                            <td>Join Our Telegram</td>
-                         
-                            <td>10:30 AM</td>
-                            <td>2024-10-05</td>
-                            <td class="status active">Active</td>
-                            <td>
-                                <button class="view-btn">View</button>
-                                <button class="edit-btn">Edit</button>
-                                <button class="delete-btn">Delete</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </main>
-        
-        <!-- Popup Form for Add New -->
-        <div class="popup-overlay" id="popupOverlay">
-            <div class="popup-form">
-                <section class="body">
-                    <section class="container">
-                        <header>
-                            <h1 style="font-size: 25px;">Tapblox Admin<strong style="color: orange;">.</strong></h1>
-                        </header>
-                      <header id="popupHeader">Create New Task</header> <!-- Header changes dynamically -->
-             <form action="#" class="form" id="customerForm">
-                            <div class="input-box address">
-                                <label style="color: orange;">Details</label>
-                                <div class="column">
-                                    <input type="text" id="firstName" placeholder="Task or Challenge" required />
-                            
-                                </div>
-                                <div class="column">
-                                
-                                </div>
-                                <div class="column">
-                                    <input type="text" id="customerID" placeholder="Customer ID" readonly />
-                                </div>
-      
-                                <div class="column">
-                              
-                              </div>
-                            </div>
-                        
-                            <button type="submit" id="commitChangesBtn">Upload Task</button>
-                        </form>
-                    </section>
-                </section>
-            </div>
-        </div>
-      
-          <script>
-          const openPopupBtn = document.getElementById('openPopupBtn');
-          const popupOverlay = document.getElementById('popupOverlay');
-          const customerForm = document.getElementById('customerForm');
-          const accountsTable = document.getElementById('accountsTable').getElementsByTagName('tbody')[0];
-          let customerCount = 1;
-          let editingCustomerIndex = null;
-      
-          // Load saved customers from localStorage on page load
-          document.addEventListener('DOMContentLoaded', loadCustomers);
-      
-          // Open the popup for "Create Customer"
-          openPopupBtn.addEventListener('click', () => {
-              openPopup('create');
-              generateCustomerID(); // Generate Customer ID when popup opens
-          });
-      
-          // Close popup when clicking outside
-          popupOverlay.addEventListener('click', (event) => {
-              if (event.target === popupOverlay) {
-                  popupOverlay.classList.remove('show-popup');
-              }
-          });
-      
-      // Open Popup for Create, View, or Edit mode
-      function openPopup(mode, customer = null) {
-          if (mode === 'create') {
-              popupHeader.textContent = 'Create User'; // Set popup header
-              generateCustomerID(); // Generate a new Customer ID
-              customerForm.reset(); // Reset form fields for a new customer
-              editingCustomerIndex = null;
-              toggleFormEditable(true); // Make form editable for create
-          } else if (mode === 'edit' || mode === 'view') {
-              popupHeader.textContent = mode === 'edit' ? 'Edit User' : 'View User'; // Change header based on mode
-              fillFormWithCustomerData(customer); // Populate form with customer data
-              editingCustomerIndex = customer.index;
-              toggleFormEditable(mode === 'edit'); // Make form editable only in edit mode
-          }
-          popupOverlay.classList.add('show-popup'); // Show the popup
+  <!-- Customer Accounts Table -->
+  <div class="table-wrapper">
+      <table class="accounts-table" id="accountsTable">
+          <thead>
+              <tr>
+                  <th><input type="checkbox"></th>
+                  <th>Task ID</th>
+                  <th>Task</th>
+                  <th>Duration (s)</th>
+                  <th>Max Views</th>
+                  <th>Amount (USD)</th>
+                  <th>Time Created</th>
+                  <th>Date Created</th>
+                  <th>Task Status</th>
+                  <th>Actions</th>
+              </tr>
+          </thead>
+          <tbody>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>TASK001</td>
+                <td>Watch Promo Video</td>
+                <td>120</td>
+                <td>500</td>
+                <td>5.00</td>
+                <td>10:30 AM</td>
+                <td>2024-10-28</td>
+                <td class="status active">Active</td>
+                <td>
+                    <button class="view-btn" onclick="viewTask(0)">View</button>
+                    <button class="edit-btn" onclick="editTask(0)">Edit</button>
+                    <button class="delete-btn" onclick="deleteTask(0)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>TASK002</td>
+                <td>Follow Us on Twitter</td>
+                <td>60</td>
+                <td>1000</td>
+                <td>2.50</td>
+                <td>11:00 AM</td>
+                <td>2024-10-28</td>
+                <td class="status pending">Pending</td>
+                <td>
+                    <button class="view-btn" onclick="viewTask(1)">View</button>
+                    <button class="edit-btn" onclick="editTask(1)">Edit</button>
+                    <button class="delete-btn" onclick="deleteTask(1)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>TASK003</td>
+                <td>Complete Survey</td>
+                <td>180</td>
+                <td>800</td>
+                <td>4.00</td>
+                <td>12:00 PM</td>
+                <td>2024-10-28</td>
+                <td class="status active">Active</td>
+                <td>
+                    <button class="view-btn" onclick="viewTask(2)">View</button>
+                    <button class="edit-btn" onclick="editTask(2)">Edit</button>
+                    <button class="delete-btn" onclick="deleteTask(2)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>TASK004</td>
+                <td>Join Telegram Group</td>
+                <td>45</td>
+                <td>1200</td>
+                <td>3.00</td>
+                <td>1:00 PM</td>
+                <td>2024-10-28</td>
+                <td class="status completed">Completed</td>
+                <td>
+                    <button class="view-btn" onclick="viewTask(3)">View</button>
+                    <button class="edit-btn" onclick="editTask(3)">Edit</button>
+                    <button class="delete-btn" onclick="deleteTask(3)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>TASK005</td>
+                <td>Share on Facebook</td>
+                <td>30</td>
+                <td>1500</td>
+                <td>1.50</td>
+                <td>2:00 PM</td>
+                <td>2024-10-28</td>
+                <td class="status active">Active</td>
+                <td>
+                    <button class="view-btn" onclick="viewTask(4)">View</button>
+                    <button class="edit-btn" onclick="editTask(4)">Edit</button>
+                    <button class="delete-btn" onclick="deleteTask(4)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>TASK006</td>
+                <td>Leave Product Review</td>
+                <td>90</td>
+                <td>600</td>
+                <td>3.75</td>
+                <td>3:00 PM</td>
+                <td>2024-10-28</td>
+                <td class="status pending">Pending</td>
+                <td>
+                    <button class="view-btn" onclick="viewTask(5)">View</button>
+                    <button class="edit-btn" onclick="editTask(5)">Edit</button>
+                    <button class="delete-btn" onclick="deleteTask(5)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>TASK007</td>
+                <td>Answer Forum Questions</td>
+                <td>150</td>
+                <td>700</td>
+                <td>4.50</td>
+                <td>4:00 PM</td>
+                <td>2024-10-28</td>
+                <td class="status active">Active</td>
+                <td>
+                    <button class="view-btn" onclick="viewTask(6)">View</button>
+                    <button class="edit-btn" onclick="editTask(6)">Edit</button>
+                    <button class="delete-btn" onclick="deleteTask(6)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>TASK008</td>
+                <td>Watch Livestream</td>
+                <td>300</td>
+                <td>400</td>
+                <td>6.00</td>
+                <td>5:00 PM</td>
+                <td>2024-10-28</td>
+                <td class="status completed">Completed</td>
+                <td>
+                    <button class="view-btn" onclick="viewTask(7)">View</button>
+                    <button class="edit-btn" onclick="editTask(7)">Edit</button>
+                    <button class="delete-btn" onclick="deleteTask(7)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>TASK009</td>
+                <td>Sign Up for Newsletter</td>
+                <td>15</td>
+                <td>2000</td>
+                <td>1.00</td>
+                <td>6:00 PM</td>
+                <td>2024-10-28</td>
+                <td class="status active">Active</td>
+                <td>
+                    <button class="view-btn" onclick="viewTask(8)">View</button>
+                    <button class="edit-btn" onclick="editTask(8)">Edit</button>
+                    <button class="delete-btn" onclick="deleteTask(8)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>TASK010</td>
+                <td>Rate Mobile App</td>
+                <td>120</td>
+                <td>900</td>
+                <td>3.25</td>
+                <td>7:00 PM</td>
+                <td>2024-10-28</td>
+                <td class="status pending">Pending</td>
+                <td>
+                    <button class="view-btn" onclick="viewTask(9)">View</button>
+                    <button class="edit-btn" onclick="editTask(9)">Edit</button>
+                    <button class="delete-btn" onclick="deleteTask(9)">Delete</button>
+                </td>
+            </tr>
+            <!-- Additional rows up to TASK020 -->
+        </tbody>
+      </table>
+  </div>
+</main>
+
+<!-- Popup Form for Add New -->
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup-form">
+      <section class="body">
+          <section class="container">
+              <header>
+                  <h1 style="font-size: 25px;">Tapblox Admin<strong style="color: orange;">.</strong></h1>
+              </header>
+              <header id="popupHeader">Create New Task</header>
+              <form action="#" class="form" id="customerForm">
+                  <div class="input-box address">
+                      <label style="color: orange;">Details</label>
+                      <div class="column">
+                          <input type="text" id="taskName" placeholder="Task or Challenge" required />
+                          <input type="number" id="duration" placeholder="Duration (Seconds)" required>
+                      </div>
+                      <div class="column">
+                          <input type="number" id="maxViews" placeholder="Maximum Show" required>
+                          <input type="number" id="amount" step="0.01" placeholder="Amount (USD)" required>
+                      </div>
+                      <div class="column">
+                          <input type="text" id="customerID" placeholder="Customer ID" readonly />
+                      </div>
+                      <div class="column">
+                          <div class="select-box">
+                              <select id="status">
+                                  <option hidden>Status</option>
+                                  <option value="Active">Active</option>
+                                  <option value="Pending">Pending</option>
+                              </select>
+                          </div>
+                          <div class="select-box">
+                              <select id="type">
+                                  <option hidden>Advertisement Type</option>
+                                  <option value="URL">Link / URL</option>
+                                  <option value="YouTube Link">YouTube Link</option>
+                              </select>
+                          </div>
+                      </div>
+                      <div class="column">
+                          <input type="url" id="link" placeholder="Link" required />
+                      </div>
+                      <div class="column">
+                          <input type="text" id="description" placeholder="Task Description" required />
+                      </div>
+                  </div>
+                  <button type="submit" id="commitChangesBtn">Upload Task</button>
+              </form>
+          </section>
+      </section>
+  </div>
+</div>
+
+<script>
+  const openPopupBtn = document.getElementById('openPopupBtn');
+  const popupOverlay = document.getElementById('popupOverlay');
+  const customerForm = document.getElementById('customerForm');
+  const accountsTable = document.getElementById('accountsTable').getElementsByTagName('tbody')[0];
+  let customerCount = 1;
+  let editingCustomerIndex = null;
+
+  // Load saved customers from localStorage on page load
+  document.addEventListener('DOMContentLoaded', loadCustomers);
+
+  openPopupBtn.addEventListener('click', () => {
+      openPopup('create');
+      generateCustomerID(); // Generate Customer ID when popup opens
+  });
+
+  popupOverlay.addEventListener('click', (event) => {
+      if (event.target === popupOverlay) {
+          popupOverlay.classList.remove('show-popup');
+      }
+  });
+
+  function openPopup(mode, customer = null) {
+      if (mode === 'create') {
+          popupHeader.textContent = 'Create New Task';
+          generateCustomerID();
+          customerForm.reset();
+          editingCustomerIndex = null;
+          toggleFormEditable(true);
+      } else if (mode === 'edit' || mode === 'view') {
+          popupHeader.textContent = mode === 'edit' ? 'Edit Task' : 'View Task';
+          fillFormWithCustomerData(customer);
+          editingCustomerIndex = customer.index;
+          toggleFormEditable(mode === 'edit');
+      }
+      popupOverlay.classList.add('show-popup');
+  }
+
+  function fillFormWithCustomerData(customer) {
+      document.getElementById('customerID').value = customer.customerID;
+      document.getElementById('taskName').value = customer.name;
+      document.getElementById('duration').value = customer.duration;
+      document.getElementById('maxViews').value = customer.maxViews;
+      document.getElementById('amount').value = customer.amount;
+      document.getElementById('status').value = customer.status;
+      document.getElementById('type').value = customer.type;
+      document.getElementById('link').value = customer.link;
+      document.getElementById('description').value = customer.description;
+  }
+
+  function generateCustomerID() {
+      customerCount++;
+      const customerIDInput = document.getElementById('customerID');
+      customerIDInput.value = 'TASK' + ('000' + customerCount).slice(-3);
+  }
+
+  function getCurrentTime() {
+      const now = new Date();
+      let hours = now.getHours();
+      let minutes = now.getMinutes();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12;
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      return hours + ':' + minutes + ' ' + ampm;
+  }
+
+  function getCurrentDate() {
+      const now = new Date();
+      return now.toISOString().split('T')[0];
+  }
+
+  customerForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const newTask = {
+          customerID: document.getElementById('customerID').value,
+          name: document.getElementById('taskName').value,
+          duration: document.getElementById('duration').value,
+          maxViews: document.getElementById('maxViews').value,
+          amount: document.getElementById('amount').value,
+          timeCreated: getCurrentTime(),
+          dateCreated: getCurrentDate(),
+          status: document.getElementById('status').value,
+          type: document.getElementById('type').value,
+          link: document.getElementById('link').value,
+          description: document.getElementById('description').value,
+      };
+
+      if (editingCustomerIndex === null) {
+          addTaskToTable(newTask);
+          saveTask(newTask);
+      } else {
+          updateTask(newTask, editingCustomerIndex);
       }
       
-      // Fill the form with customer data (used for View and Edit)
-      function fillFormWithCustomerData(customer) {
-          document.getElementById('customerID').value = customer.customerID;
-          const [firstName, lastName] = customer.name.split(' ');
-          document.getElementById('firstName').value = firstName;
-      
-      }
-      
-      
-          // Generate Customer ID automatically
-          function generateCustomerID() {
-              customerCount++; // Increment customer count for each new customer
-              const customerIDInput = document.getElementById('customerID');
-              customerIDInput.value = 'TASK' + ('000' + customerCount).slice(-3);
-          }
-      
-          // Get current time in HH:MM AM/PM format
-          function getCurrentTime() {
-              const now = new Date();
-              let hours = now.getHours();
-              let minutes = now.getMinutes();
-              const ampm = hours >= 12 ? 'PM' : 'AM';
-              hours = hours % 12;
-              hours = hours ? hours : 12; // hour '0' should be '12'
-              minutes = minutes < 10 ? '0' + minutes : minutes;
-              return hours + ':' + minutes + ' ' + ampm;
-          }
-      
-          // Get current date in YYYY-MM-DD format
-          function getCurrentDate() {
-              const now = new Date();
-              return now.toISOString().split('T')[0];
-          }
-      
-          // Handle form submission to add a new or edit existing customer
-          customerForm.addEventListener('submit', (event) => {
-              event.preventDefault(); // Prevent form from refreshing the page
-      
-              // Get form values
-              const firstName = document.getElementById('firstName').value;
-        
-              const customerID = document.getElementById('customerID').value;
-              const timeJoined = getCurrentTime();
-              const dateJoined = getCurrentDate();
-      
-              // Create or Update customer object
-              const newCustomer = {
-                  customerID,
-                  name: `${firstName}`,
-               
-                  timeJoined,
-                  dateJoined,
-                  status: 'Active'
-              };
-      
-              if (editingCustomerIndex === null) {
-                  // New customer (Create mode)
-                  addCustomerToTable(newCustomer);
-                  saveCustomer(newCustomer);
-              } else {
-                  // Edit existing customer
-                  updateCustomer(newCustomer, editingCustomerIndex);
-              }
-      
-              // Close the popup after adding/editing
-              popupOverlay.classList.remove('show-popup');
-              customerForm.reset();
-              generateCustomerID();
-          });
-      
-          // Fill the form with customer data (used for View and Edit)
-          function fillFormWithCustomerData(customer) {
-              document.getElementById('customerID').value = customer.customerID;
-              const [firstName, lastName] = customer.name.split(' ');
-              document.getElementById('firstName').value = firstName;
-          
-          }
-      
-          // Toggle form editable (used for View/Edit modes)
-          function toggleFormEditable(isEditable) {
-              const formInputs = customerForm.querySelectorAll('input');
-              formInputs.forEach(input => input.readOnly = !isEditable);
-              const commitButton = customerForm.querySelector('button[type="submit"]');
-              commitButton.style.display = isEditable ? 'block' : 'none'; // Hide button if not editable
-          }
-      
-          // Add customer to the table
-          function addCustomerToTable(customer) {
-              const newRow = accountsTable.insertRow();
-              newRow.innerHTML = `
-                  <td><input type="checkbox"></td>
-                  <td>${customer.customerID}</td>
-                  <td>${customer.name}</td>
-                  
-                  <td>${customer.timeJoined}</td>
-                  <td>${customer.dateJoined}</td>
-                  <td class="status active">${customer.status}</td>
-                  <td>
-                      <button class="view-btn" onclick="viewCustomer(${accountsTable.rows.length - 1})">View</button>
-                      <button class="edit-btn" onclick="editCustomer(${accountsTable.rows.length - 1})">Edit</button>
-                      <button class="delete-btn" onclick="deleteCustomer(${accountsTable.rows.length - 1})">Delete</button>
-                  </td>
-              `;
-          }
-      
-          // Save a customer to localStorage
-          function saveCustomer(customer) {
-              let customers = JSON.parse(localStorage.getItem('customers')) || [];
-              customers.push(customer);
-              localStorage.setItem('customers', JSON.stringify(customers));
-          }
-      
-          // Load customers from localStorage and populate the table
-          function loadCustomers() {
-              let customers = JSON.parse(localStorage.getItem('customers')) || [];
-              customers.forEach((customer, index) => {
-                  customer.index = index;
-                  addCustomerToTable(customer);
-              });
-              customerCount = customers.length; // Update customer count to match saved customers
-          }
-      
-           // View customer details (open popup in View mode)
-           function viewCustomer(rowIndex) {
-              let customers = JSON.parse(localStorage.getItem('customers')) || [];
-              const customer = customers[rowIndex];
-              openPopup('view', customer);
-          }
-      
-          // Edit customer details (open popup in Edit mode)
-          function editCustomer(rowIndex) {
-              let customers = JSON.parse(localStorage.getItem('customers')) || [];
-              const customer = customers[rowIndex];
-              openPopup('edit', customer);
-          }
-      
-          // Update an existing customer
-          function updateCustomer(updatedCustomer, index) {
-              let customers = JSON.parse(localStorage.getItem('customers')) || [];
-              customers[index] = updatedCustomer; // Update customer in array
-              localStorage.setItem('customers', JSON.stringify(customers));
-              // Reload the table
-              accountsTable.innerHTML = ''; // Clear table
-              loadCustomers(); // Reload table with updated customers
-          }
-      
-          // Delete customer from table and localStorage
-          function deleteCustomer(rowIndex) {
-              let customers = JSON.parse(localStorage.getItem('customers')) || [];
-              customers.splice(rowIndex, 1); // Remove customer from array
-              localStorage.setItem('customers', JSON.stringify(customers));
-              // Reload the table
-              accountsTable.innerHTML = ''; // Clear table
-              loadCustomers(); // Reload table with remaining customers
-          }
-      </script>
-      
+      popupOverlay.classList.remove('show-popup');
+      customerForm.reset();
+      generateCustomerID();
+  });
+
+  function toggleFormEditable(isEditable) {
+      const formInputs = customerForm.querySelectorAll('input, select');
+      formInputs.forEach(input => input.readOnly = !isEditable);
+      document.getElementById('commitChangesBtn').style.display = isEditable ? 'block' : 'none';
+  }
+
+  function addTaskToTable(task) {
+      const newRow = accountsTable.insertRow();
+      newRow.innerHTML = `
+          <td><input type="checkbox"></td>
+          <td>${task.customerID}</td>
+          <td>${task.name}</td>
+          <td>${task.duration}</td>
+          <td>${task.maxViews}</td>
+          <td>${task.amount}</td>
+          <td>${task.timeCreated}</td>
+          <td>${task.dateCreated}</td>
+          <td class="status ${task.status.toLowerCase()}">${task.status}</td>
+          <td>
+              <button class="view-btn" onclick="viewTask(${accountsTable.rows.length - 1})">View</button>
+              <button class="edit-btn" onclick="editTask(${accountsTable.rows.length - 1})">Edit</button>
+              <button class="delete-btn" onclick="deleteTask(${accountsTable.rows.length - 1})">Delete</button>
+          </td>
+      `;
+  }
+
+  function saveTask(task) {
+      let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+      tasks.push(task);
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+  }
+
+  function loadCustomers() {
+      let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+      tasks.forEach((task, index) => {
+          task.index = index;
+          addTaskToTable(task);
+      });
+      customerCount = tasks.length;
+  }
+
+  function viewTask(rowIndex) {
+      let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+      const task = tasks[rowIndex];
+      openPopup('view', task);
+  }
+
+  function editTask(rowIndex) {
+      let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+      const task = tasks[rowIndex];
+      openPopup('edit', task);
+  }
+
+  function deleteTask(rowIndex) {
+      let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+      tasks.splice(rowIndex, 1);
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+      accountsTable.deleteRow(rowIndex);
+  }
+</script>
+    
       
         
       

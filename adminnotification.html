@@ -264,11 +264,11 @@ h2 {
 .notification-form input[type="text"],
 .notification-form textarea {
   width: 100%;
-  padding: 10px;
+  padding: 20px;
   margin-bottom: 15px;
-  border: 1px solid rgb(255, 248, 225);
+  border: 1px solid rgb(166, 166, 166);
   border-radius: 5px;
-  background: rgb(255, 248, 225);
+  /* background: rgb(255, 248, 225); */
   font-size: 18px;
 }
 
@@ -298,13 +298,14 @@ h2 {
 .submit-button {
   width: 100%;
   padding: 10px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   background-color: black;
   color: #fff;
+  font-family: poppins;
   height: 60px;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -323,19 +324,22 @@ h2 {
 
         <div class="containerr">
             <h2>Notification to Verified Users</h2>
-            <div class="button-group">
+            <!-- <div class="button-group">
               <button class="tab active">
                 <span class="icon">✉️</span> Send Via Email
               </button>
               <button class="tab">
                 <span class="icon">🔔</span> Send Via Firebase
               </button>
-            </div>
+            </div> -->
         
             <form class="notification-form">
               <label for="being-sent-to">Being Sent To <span class="required">*</span></label>
               <select id="being-sent-to">
                 <option>All Users</option>
+                <option>Current Active Users</option>
+                <option>Email Verified Users</option>
+                <option>Mobile Verified Users</option>
               </select>
         
               <label for="subject">Subject <span class="required">*</span></label>
