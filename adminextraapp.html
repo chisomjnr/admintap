@@ -31,10 +31,10 @@
         </div>
    
           <div class="header-right">
-            <span ><a id="ac" href="adminextra.html">Update</a></span>
+            <span ><a  href="adminextra.html">Update</a></span>
           <span ><a href="adminextracatche.html">Cache</a></span>
           <span ><a href="adminextraserver.html">Server</a></span>
-          <span ><a href="adminextraapp.html">Application</a></span>
+          <span ><a id="ac" href="adminextraapp.html">Application</a></span>
         </div>
    
       </header>
@@ -174,115 +174,74 @@
       <!-- Main -->
       <main class="main-container">
  
-<style>
-  /* styles.css */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: poppins, sans-serif;
-}
+        
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: poppins, sans-serif;
+            }
+        
+            .container {
+                width: 100%;
+                background-color: white;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
-body {
-    background-color: #f4f5fb;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.container {
-
-    text-align: center;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.header h2 {
-    font-size: 24px;
-    color: #333;
-}
-
-.update-log-btn {
-    padding: 8px 16px;
-    font-size: 14px;
-    color: #6366f1;
-    background-color: transparent;
-    border: 1px solid #6366f1;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.update-log-btn:hover {
-    background-color: #e0e7ff;
-}
-
-.version-box {
-    border: 2px solid #16a34a;
-    border-radius: 8px;
-    padding: 20px;
-    background-color: #fff;
-}
-
-.version-number {
-    font-size: 72px;
-    color: #f97316;
-    margin-bottom: 5px;
-}
-
-.version-label {
-    font-size: 20px;
-    color: #f97316;
-    margin-bottom: 15px;
-}
-
-.version-info {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-    color: #6b7280;
-}
-
-.info-icon {
-    font-size: 18px;
-    color: #6366f1;
-    margin-right: 8px;
-}
-
-.info-text strong {
-    font-style: italic;
-}
-
-</style>
-
-
-
-
-
+                padding: 20px;
+            }
+            .title {
+                font-size: 25px;
+                font-weight: bold;
+                color: #333;
+                margin-bottom: 10px;
+            }
+            .table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 10px;
+            }
+            .table th, .table td {
+                padding: 15px;
+                text-align: left;
+                font-size: 18px;
+                color: #555;
+                border-bottom: 1px solid #e8e8e8;
+            }
+            .table th {
+                width: 40%;
+                font-weight: normal;
+                color: #555;
+            }
+        </style>
+    </head>
+    <body>
         <div class="container">
-          <div class="header">
-              <h2>System Updates</h2>
-              <button  onclick="window.location.href='adminextralogs.html';"class="update-log-btn">Update Log</button>
-          </div>
-          <div class="version-box">
-              <h1 class="version-number">4.1</h1>
-              <p class="version-label">Your Version</p>
-              <p class="version-info">
-                  <span class="info-icon"><i class="fas fa-info"></i></span>
-                  <span class="info-text">
-                      <strong>You are currently using the latest version of the system.</strong>
-                      We are committed to continuous improvement and are actively developing the next version. Stay tuned for exciting new features and enhancements to be released soon!
-                  </span>
-              </p>
-          </div>
-      </div>
+            <div class="title">Application Information</div>
+            <table class="table">
+                <tr>
+                    <th>Tapblox APK Version</th>
+                    <td>5.0.10</td>
+                </tr>
+                <tr>
+                    <th>Tapblox Admins Software</th>
+                    <td>4.1</td>
+                </tr>
+                <tr>
+                    <th>Laravel Version</th>
+                    <td>11.10.0</td>
+                </tr>
+                <tr>
+                    <th>Timezone</th>
+                    <td>UTC</td>
+                </tr>
+            
+            </table>
+        </div>
+
+
 
 
 

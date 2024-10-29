@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Tapblox | Extra</title>
+    <title>Tapblox | System Update Log</title>
 
     <!-- Montserrat Font -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -11,9 +11,15 @@
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 
-    <link
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
     href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap"
     rel="stylesheet">
+
+    
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
@@ -31,7 +37,7 @@
         </div>
    
           <div class="header-right">
-            <span ><a id="ac" href="adminextra.html">Update</a></span>
+            <span ><a href="adminextra.html">Update</a></span>
           <span ><a href="adminextracatche.html">Cache</a></span>
           <span ><a href="adminextraserver.html">Server</a></span>
           <span ><a href="adminextraapp.html">Application</a></span>
@@ -174,126 +180,110 @@
       <!-- Main -->
       <main class="main-container">
  
-<style>
-  /* styles.css */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: poppins, sans-serif;
-}
-
-body {
-    background-color: #f4f5fb;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.container {
-
-    text-align: center;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.header h2 {
-    font-size: 24px;
-    color: #333;
-}
-
-.update-log-btn {
-    padding: 8px 16px;
-    font-size: 14px;
-    color: #6366f1;
-    background-color: transparent;
-    border: 1px solid #6366f1;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.update-log-btn:hover {
-    background-color: #e0e7ff;
-}
-
-.version-box {
-    border: 2px solid #16a34a;
-    border-radius: 8px;
-    padding: 20px;
-    background-color: #fff;
-}
-
-.version-number {
-    font-size: 72px;
-    color: #f97316;
-    margin-bottom: 5px;
-}
-
-.version-label {
-    font-size: 20px;
-    color: #f97316;
-    margin-bottom: 15px;
-}
-
-.version-info {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-    color: #6b7280;
-}
-
-.info-icon {
-    font-size: 18px;
-    color: #6366f1;
-    margin-right: 8px;
-}
-
-.info-text strong {
-    font-style: italic;
-}
-
-</style>
 
 
 
 
 
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: poppins, sans-serif;
+            }
+       
+            .container {
+                width: 100%;
+          
+                background-color: white;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                padding: 30px;
+            }
+            h2 {
+                font-size: 25px;
+                color: #333;
+                margin-bottom: 20px;
+            }
+            .version {
+                margin-bottom: 20px;
+            }
+            .version h3 {
+                font-size: 18px;
+                color: #333;
+                margin-bottom: 10px;
+            }
+            .log-list {
+                list-style: none;
+                margin-left: 20px;
+            }
+            .log-list li {
+                margin-bottom: 5px;
+                font-size: 16px;
+                color: #555;
+            }
+        </style>
+ 
+    
         <div class="container">
-          <div class="header">
-              <h2>System Updates</h2>
-              <button  onclick="window.location.href='adminextralogs.html';"class="update-log-btn">Update Log</button>
-          </div>
-          <div class="version-box">
-              <h1 class="version-number">4.1</h1>
-              <p class="version-label">Your Version</p>
-              <p class="version-info">
-                  <span class="info-icon"><i class="fas fa-info"></i></span>
-                  <span class="info-text">
-                      <strong>You are currently using the latest version of the system.</strong>
-                      We are committed to continuous improvement and are actively developing the next version. Stay tuned for exciting new features and enhancements to be released soon!
-                  </span>
-              </p>
-          </div>
-      </div>
-
-
-
-
-
-
-
-
-
-
-
+            <h2> <i style="color: orange; margin-right: 10px; cursor: pointer;" class="fas fa-arrow-left" onclick="window.location.href='adminextra.html';"></i>  System Update Log</h2>
+    
+            <div class="version">
+                <h3>Version 4.1 | Uploaded: 2024-10-20</h3>
+                <ul class="log-list">
+                    <li>[FIX] Error With Binance Payment Gateway Displayed in the Admin Panel</li>
+                    <li>[FIX] Countdown Issue on the User Dashboard</li>
+                    <li>[FIX] Final Amount Not Displaying on the Deposit Confirmation Page in Flutterwave</li>
+                    <li>[FIX] Fixed Charge Not Adding to Total Percentage During Withdrawals</li>
+                    <li>[PATCH] Latest System Patch</li>
+                    <li>[PATCH] Latest Security Patch</li>
+                </ul>
+            </div>
+    
+            <div class="version">
+                <h3>Version 4.0 | Uploaded: 2024-06-06</h3>
+                <ul class="log-list">
+                    <li>[ADD] Push notification</li>
+                    <li>[ADD] Binance payment gateway</li>
+                    <li>[ADD] Aamarpay payment gateway</li>
+                    <li>[ADD] SslCommerz payment gateway</li>
+                    <li>[ADD] Slug management for Blogs</li>
+                    <li>[ADD] SEO content management for Blog</li>
+                    <li>[ADD] Slug management for Policy Pages</li>
+                    <li>[ADD] SEO content management for Policy Pages</li>
+                    <li>[ADD] Input type number, URL, date, and time in the Form Generator</li>
+                    <li>[ADD] Configurable input field width in the Form Generator</li>
+                    <li>[ADD] Configurable hints/instructions for input fields in the Form Generator</li>
+                    <li>[ADD] Sorting option for input fields in the Form Generator</li>
+                    <li>[ADD] Automatic system update</li>
+                    <li>[ADD] Image on deposit and withdraw method</li>
+                    <li>[ADD] Configurable number of items per page for pagination</li>
+                    <li>[ADD] Configurable currency display format</li>
+                    <li>[ADD] Redirecting to intended location when required</li>
+                    <li>[ADD] Resend code countdown on verification pages</li>
+                    <li>[UPDATE] Some design modifications on the basic template</li>
+                    <li>[UPDATE] Admin dashboard widget design</li>
+                    <li>[UPDATE] Notification sending process</li>
+                    <li>[UPDATE] User experience of the admin sidebar</li>
+                    <li>[UPDATE] Improved menu searching functionality on the admin panel</li>
+                    <li>[UPDATE] User experience of the select fields of the admin panel</li>
+                    <li>[UPDATE] Centralized settings system</li>
+                    <li>[UPDATE] Form Generator UI on the admin panel</li>
+                    <li>[UPDATE] Google Analytics script</li>
+                    <li>[UPDATE] Notification toaster UI</li>
+                    <li>[UPDATE] Support ticket attachment upload UI</li>
+                    <li>[UPDATE] Notification template content configuration</li>
+                    <li>[UPDATE] Configurable email from name and address for each template</li>
+                    <li>[UPDATE] Configurable SMS form for each template</li>
+                    <li>[UPDATE] Overall user interface of the admin panel</li>
+                    <li>[PATCH] Laravel 11</li>
+                    <li>[PATCH] PHP 8.3</li>
+                    <li>[PATCH] Latest System Patch</li>
+                    <li>[PATCH] Latest Security Patch</li>
+                </ul>
+            </div>
+        </div>
 
 
 
