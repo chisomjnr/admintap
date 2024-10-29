@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management Dashboard</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Optional external CSS for styling -->
+</head>
+<body>
+    <div class="container">
+        <h2>Task Management</h2>
+        <button onclick="openTaskForm()">+ Add New Task</button>
+
+        <table id="taskTable">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Task Description</th>
+                    <th>Type</th>
+                    <th>Duration</th>
+                    <th>Max Views</th>
+                    <th>Viewed</th>
+                    <th>Remaining</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be populated by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        const tasks = []; // This would come from the server in a real app
+
+        // Function to render tasks in the table
+        function renderTasks() {
+            const tableBody = document.getElementById('taskTable').getElementsByTagName('tbody')[0];
+            tableBody.innerHTML = ''; // Clear table before rendering
+
+            tasks.forEach((task, index) => {
+                const row = document.createElement('tr');
+
+                row.innerHTML = `
+                    <td>${task.title}</td>
+                    <td>${task.description}</td>
+                    <td>${task.type}</td>
+                    <td>${task.duration} Sec</td>
+                    <td>${task.maxViews}</td>
+                    <td>${task.viewed}</td>
+                    <td>${task.remaining}</td>
+                    <td>$${task.amount} USD</td>
+                    <td>${task.status}</td>
+                    <td>
+                        <button onclick="engagement(${index})">Engagement</button>
+                        <button onclick="editTask(${index})">Edit</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Function to open the task form to add/edit tasks
+        function openTaskForm(taskIndex = null) {
+            // Code to open the Task Creation Form with existing data if editing
+            if (taskIndex !== null) {
+                localStorage.setItem('editTask', JSON.stringify(tasks[taskIndex]));
+            }
+            window.location.href = 'task_form.html'; // Navigate to Task Creation Form
+        }
+
+        // Function to initialize with example data
+        function initializeTasks() {
+            tasks.push({
+                title: "Example Task",
+                description: "Watch a video for 30 seconds",
+                type: "YouTube Link",
+                duration: 30,
+                maxViews: 5,
+                viewed: 0,
+                remaining: 5,
+                amount: 0.15,
+                status: "Pending"
+            });
+            renderTasks();
+        }
+
+        initializeTasks();
+    </script>
+</body>
+</html>

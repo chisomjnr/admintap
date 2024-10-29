@@ -239,7 +239,7 @@
         
             .accounts-table {
                 width: 100%;
-                min-width: 1500px; /* Set minimum width to allow horizontal scrolling */
+                min-width: 2000px; /* Set minimum width to allow horizontal scrolling */
                 border-collapse: collapse;
             }
         
@@ -290,284 +290,304 @@
                 <button class="add-btn" id="openPopupBtn"><i class="bx bx-upload"></i> Add New</button>
             </div>
         
-            <!-- Customer Accounts Table -->
-            <div class="table-wrapper">
-                <table class="accounts-table" id="accountsTable">
-                    <thead>
-                        <tr>
-                            <th><input type="checkbox"></th>
-                            <th>Customer ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Password</th>
-                            <th>Time Joined</th>
-                            <th>Date Joined</th>
-                            <th>Account Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>CUST001</td>
-                            <td>John Doe</td>
-                            <td>john.doe@example.com</td>
-                            <td>*******</td>
-                            <td>10:30 AM</td>
-                            <td>2024-10-05</td>
-                            <td class="status active">Active</td>
-                            <td>
-                                <button class="view-btn">View</button>
-                                <button class="edit-btn">Edit</button>
-                                <button class="delete-btn">Delete</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </main>
-        
-        <!-- Popup Form for Add New -->
-        <div class="popup-overlay" id="popupOverlay">
-            <div class="popup-form">
-                <section class="body">
-                    <section class="container">
-                        <header>
-                            <h1 style="font-size: 25px;">Tapblox Admin<strong style="color: orange;">.</strong></h1>
-                        </header>
-                      <header id="popupHeader">Create User</header> <!-- Header changes dynamically -->
-             <form action="#" class="form" id="customerForm">
-                            <div class="input-box address">
-                                <label style="color: orange;">Details</label>
-                                <div class="column">
-                                    <input type="text" id="firstName" placeholder="First Name" required />
-                                    <input type="text" id="lastName" placeholder="Last Name" required />
-                                </div>
-                                <div class="column">
-                                    <input type="email" id="email" placeholder="Email" required />
-                                </div>
-                                <div class="column">
-                                    <input type="text" id="customerID" placeholder="Customer ID" readonly />
-                                </div>
+    <!-- Customer Accounts Table -->
+  <div class="table-wrapper">
+    <table class="accounts-table" id="accountsTable">
+        <thead>
+            <tr>
+                <th><input type="checkbox"></th>
+                <th>Customer ID</th>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Country</th>
+                <th>Balance</th>
+                <th>Password</th>
+                <th>Time Joined</th>
+                <th>Date Joined</th>
+                <th>Account Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr>
+              <td><input type="checkbox"></td>
+              <td>CUST001</td>
+              <td>John Doe</td>
+              <td>john_doe</td>
+              <td>johndoe@example.com</td>
+              <td>+1234567890</td>
+              <td>USA</td>
+              <td>$100.00</td>
+              <td>******</td>
+              <td>12:45 PM</td>
+              <td>2024-10-10</td>
+              <td class="status active">Active</td>
+              <td>
+                  <button class="view-btn" onclick="viewCustomer(0)">View</button>
+                  <button class="edit-btn" onclick="editCustomer(0)">Edit</button>
+                  <button class="delete-btn" onclick="deleteCustomer(0)">Delete</button>
+              </td>
+          </tr>
+          <tr>
+              <td><input type="checkbox"></td>
+              <td>CUST002</td>
+              <td>Jane Smith</td>
+              <td>jane_smith</td>
+              <td>janesmith@example.com</td>
+              <td>+9876543210</td>
+              <td>Canada</td>
+              <td>$250.00</td>
+              <td>******</td>
+              <td>09:30 AM</td>
+              <td>2024-10-15</td>
+              <td class="status active">Active</td>
+              <td>
+                  <button class="view-btn" onclick="viewCustomer(1)">View</button>
+                  <button class="edit-btn" onclick="editCustomer(1)">Edit</button>
+                  <button class="delete-btn" onclick="deleteCustomer(1)">Delete</button>
+              </td>
+          </tr>
+          <tr>
+              <td><input type="checkbox"></td>
+              <td>CUST003</td>
+              <td>Michael Lee</td>
+              <td>michael_lee</td>
+              <td>michaellee@example.com</td>
+              <td>+1122334455</td>
+              <td>UK</td>
+              <td>$75.50</td>
+              <td>******</td>
+              <td>03:15 PM</td>
+              <td>2024-10-20</td>
+              <td class="status inactive">Inactive</td>
+              <td>
+                  <button class="view-btn" onclick="viewCustomer(2)">View</button>
+                  <button class="edit-btn" onclick="editCustomer(2)">Edit</button>
+                  <button class="delete-btn" onclick="deleteCustomer(2)">Delete</button>
+              </td>
+          </tr>
+      </tbody>
       
-                                <div class="column">
-                                  <input type="password" id="password" placeholder="Password" required />
-                              </div>
-                            </div>
-                        
-                            <button type="submit" id="commitChangesBtn">Commit Changes</button>
-                        </form>
-                    </section>
-                </section>
-            </div>
-        </div>
-      
-          <script>
-          const openPopupBtn = document.getElementById('openPopupBtn');
-          const popupOverlay = document.getElementById('popupOverlay');
-          const customerForm = document.getElementById('customerForm');
-          const accountsTable = document.getElementById('accountsTable').getElementsByTagName('tbody')[0];
-          let customerCount = 1;
-          let editingCustomerIndex = null;
-      
-          // Load saved customers from localStorage on page load
-          document.addEventListener('DOMContentLoaded', loadCustomers);
-      
-          // Open the popup for "Create Customer"
-          openPopupBtn.addEventListener('click', () => {
-              openPopup('create');
-              generateCustomerID(); // Generate Customer ID when popup opens
-          });
-      
-          // Close popup when clicking outside
-          popupOverlay.addEventListener('click', (event) => {
-              if (event.target === popupOverlay) {
-                  popupOverlay.classList.remove('show-popup');
-              }
-          });
-      
-      // Open Popup for Create, View, or Edit mode
-      function openPopup(mode, customer = null) {
-          if (mode === 'create') {
-              popupHeader.textContent = 'Create User'; // Set popup header
-              generateCustomerID(); // Generate a new Customer ID
-              customerForm.reset(); // Reset form fields for a new customer
-              editingCustomerIndex = null;
-              toggleFormEditable(true); // Make form editable for create
-          } else if (mode === 'edit' || mode === 'view') {
-              popupHeader.textContent = mode === 'edit' ? 'Edit User' : 'View User'; // Change header based on mode
-              fillFormWithCustomerData(customer); // Populate form with customer data
-              editingCustomerIndex = customer.index;
-              toggleFormEditable(mode === 'edit'); // Make form editable only in edit mode
-          }
-          popupOverlay.classList.add('show-popup'); // Show the popup
-      }
-      
-      // Fill the form with customer data (used for View and Edit)
-      function fillFormWithCustomerData(customer) {
-          document.getElementById('customerID').value = customer.customerID;
-          const [firstName, lastName] = customer.name.split(' ');
-          document.getElementById('firstName').value = firstName;
-          document.getElementById('lastName').value = lastName;
-          document.getElementById('email').value = customer.email;
-          document.getElementById('password').value = customer.password;
-      }
-      
-      
-          // Generate Customer ID automatically
-          function generateCustomerID() {
-              customerCount++; // Increment customer count for each new customer
-              const customerIDInput = document.getElementById('customerID');
-              customerIDInput.value = 'CUST' + ('000' + customerCount).slice(-3);
-          }
-      
-          // Get current time in HH:MM AM/PM format
-          function getCurrentTime() {
-              const now = new Date();
-              let hours = now.getHours();
-              let minutes = now.getMinutes();
-              const ampm = hours >= 12 ? 'PM' : 'AM';
-              hours = hours % 12;
-              hours = hours ? hours : 12; // hour '0' should be '12'
-              minutes = minutes < 10 ? '0' + minutes : minutes;
-              return hours + ':' + minutes + ' ' + ampm;
-          }
-      
-          // Get current date in YYYY-MM-DD format
-          function getCurrentDate() {
-              const now = new Date();
-              return now.toISOString().split('T')[0];
-          }
-      
-          // Handle form submission to add a new or edit existing customer
-          customerForm.addEventListener('submit', (event) => {
-              event.preventDefault(); // Prevent form from refreshing the page
-      
-              // Get form values
-              const firstName = document.getElementById('firstName').value;
-              const lastName = document.getElementById('lastName').value;
-              const email = document.getElementById('email').value;
-              const password = document.getElementById('password').value;
-              const customerID = document.getElementById('customerID').value;
-              const timeJoined = getCurrentTime();
-              const dateJoined = getCurrentDate();
-      
-              // Create or Update customer object
-              const newCustomer = {
-                  customerID,
-                  name: `${firstName} ${lastName}`,
-                  email,
-                  password,
-                  timeJoined,
-                  dateJoined,
-                  status: 'Active'
-              };
-      
-              if (editingCustomerIndex === null) {
-                  // New customer (Create mode)
-                  addCustomerToTable(newCustomer);
-                  saveCustomer(newCustomer);
-              } else {
-                  // Edit existing customer
-                  updateCustomer(newCustomer, editingCustomerIndex);
-              }
-      
-              // Close the popup after adding/editing
-              popupOverlay.classList.remove('show-popup');
-              customerForm.reset();
-              generateCustomerID();
-          });
-      
-          // Fill the form with customer data (used for View and Edit)
-          function fillFormWithCustomerData(customer) {
-              document.getElementById('customerID').value = customer.customerID;
-              const [firstName, lastName] = customer.name.split(' ');
-              document.getElementById('firstName').value = firstName;
-              document.getElementById('lastName').value = lastName;
-              document.getElementById('email').value = customer.email;
-              document.getElementById('password').value = customer.password;
-          }
-      
-          // Toggle form editable (used for View/Edit modes)
-          function toggleFormEditable(isEditable) {
-              const formInputs = customerForm.querySelectorAll('input');
-              formInputs.forEach(input => input.readOnly = !isEditable);
-              const commitButton = customerForm.querySelector('button[type="submit"]');
-              commitButton.style.display = isEditable ? 'block' : 'none'; // Hide button if not editable
-          }
-      
-          // Add customer to the table
-          function addCustomerToTable(customer) {
-              const newRow = accountsTable.insertRow();
-              newRow.innerHTML = `
-                  <td><input type="checkbox"></td>
-                  <td>${customer.customerID}</td>
-                  <td>${customer.name}</td>
-                  <td>${customer.email}</td>
-                  <td>${'*'.repeat(customer.password.length)}</td> <!-- Password masked with * -->
-                  <td>${customer.timeJoined}</td>
-                  <td>${customer.dateJoined}</td>
-                  <td class="status active">${customer.status}</td>
-                  <td>
-                      <button class="view-btn" onclick="viewCustomer(${accountsTable.rows.length - 1})">View</button>
-                      <button class="edit-btn" onclick="editCustomer(${accountsTable.rows.length - 1})">Edit</button>
-                      <button class="delete-btn" onclick="deleteCustomer(${accountsTable.rows.length - 1})">Delete</button>
-                  </td>
-              `;
-          }
-      
-          // Save a customer to localStorage
-          function saveCustomer(customer) {
-              let customers = JSON.parse(localStorage.getItem('customers')) || [];
-              customers.push(customer);
-              localStorage.setItem('customers', JSON.stringify(customers));
-          }
-      
-          // Load customers from localStorage and populate the table
-          function loadCustomers() {
-              let customers = JSON.parse(localStorage.getItem('customers')) || [];
-              customers.forEach((customer, index) => {
-                  customer.index = index;
-                  addCustomerToTable(customer);
-              });
-              customerCount = customers.length; // Update customer count to match saved customers
-          }
-      
-           // View customer details (open popup in View mode)
-           function viewCustomer(rowIndex) {
-              let customers = JSON.parse(localStorage.getItem('customers')) || [];
-              const customer = customers[rowIndex];
-              openPopup('view', customer);
-          }
-      
-          // Edit customer details (open popup in Edit mode)
-          function editCustomer(rowIndex) {
-              let customers = JSON.parse(localStorage.getItem('customers')) || [];
-              const customer = customers[rowIndex];
-              openPopup('edit', customer);
-          }
-      
-          // Update an existing customer
-          function updateCustomer(updatedCustomer, index) {
-              let customers = JSON.parse(localStorage.getItem('customers')) || [];
-              customers[index] = updatedCustomer; // Update customer in array
-              localStorage.setItem('customers', JSON.stringify(customers));
-              // Reload the table
-              accountsTable.innerHTML = ''; // Clear table
-              loadCustomers(); // Reload table with updated customers
-          }
-      
-          // Delete customer from table and localStorage
-          function deleteCustomer(rowIndex) {
-              let customers = JSON.parse(localStorage.getItem('customers')) || [];
-              customers.splice(rowIndex, 1); // Remove customer from array
-              localStorage.setItem('customers', JSON.stringify(customers));
-              // Reload the table
-              accountsTable.innerHTML = ''; // Clear table
-              loadCustomers(); // Reload table with remaining customers
-          }
-      </script>
-      
+    </table>
+</div>
+</main>
+
+<!-- Popup Form for Add New -->
+<div class="popup-overlay" id="popupOverlay">
+<div class="popup-form">
+    <section class="body">
+        <section class="container">
+            <header>
+                <h1 style="font-size: 25px;">Tapblox Admin<strong style="color: orange;">.</strong></h1>
+            </header>
+            <header id="popupHeader">Create User</header>
+            <form action="#" class="form" id="customerForm">
+                <div class="input-box address">
+                    <label style="color: orange;">Details</label>
+                    <div class="column">
+                        <input type="text" id="firstName" placeholder="First Name" required />
+                        <input type="text" id="lastName" placeholder="Last Name" required />
+                    </div>
+                    <div class="column">
+                        <input type="text" id="username" placeholder="Username" required />
+                        <input type="number" id="phone" placeholder="Phone Number" required />
+                    </div>
+                    <div class="column">
+                        <input type="email" id="email" placeholder="Email" required />
+                    </div>
+                    <div class="column">
+                        <input type="text" id="country" placeholder="Country" required />
+                    </div>
+                    <div class="column">
+                        <input type="text" id="customerID" placeholder="Customer ID" readonly />
+                    </div>
+                    <div class="column">
+                        <input type="text" id="balance" placeholder="Balance" value="$0.00" required />
+                    </div>
+                    <div class="column">
+                        <input type="password" id="password" placeholder="Password" required />
+                    </div>
+                </div>
+                <button type="submit" id="commitChangesBtn">Commit Changes</button>
+            </form>
+        </section>
+    </section>
+</div>
+</div>
+
+<script>
+const openPopupBtn = document.getElementById('openPopupBtn');
+const popupOverlay = document.getElementById('popupOverlay');
+const customerForm = document.getElementById('customerForm');
+const accountsTable = document.getElementById('accountsTable').getElementsByTagName('tbody')[0];
+let customerCount = 1;
+let editingCustomerIndex = null;
+
+document.addEventListener('DOMContentLoaded', loadCustomers);
+
+openPopupBtn.addEventListener('click', () => {
+    openPopup('create');
+    generateCustomerID();
+});
+
+popupOverlay.addEventListener('click', (event) => {
+    if (event.target === popupOverlay) {
+        popupOverlay.classList.remove('show-popup');
+    }
+});
+
+function openPopup(mode, customer = null) {
+    if (mode === 'create') {
+        popupHeader.textContent = 'Create User';
+        generateCustomerID();
+        customerForm.reset();
+        document.getElementById('balance').value = "$0.00";
+        editingCustomerIndex = null;
+        toggleFormEditable(true);
+    } else if (mode === 'edit' || mode === 'view') {
+        popupHeader.textContent = mode === 'edit' ? 'Edit User' : 'View User';
+        fillFormWithCustomerData(customer);
+        editingCustomerIndex = customer.index;
+        toggleFormEditable(mode === 'edit');
+    }
+    popupOverlay.classList.add('show-popup');
+}
+
+function fillFormWithCustomerData(customer) {
+    document.getElementById('customerID').value = customer.customerID;
+    const [firstName, lastName] = customer.name.split(' ');
+    document.getElementById('firstName').value = firstName;
+    document.getElementById('lastName').value = lastName;
+    document.getElementById('username').value = customer.username;
+    document.getElementById('phone').value = customer.phone;
+    document.getElementById('email').value = customer.email;
+    document.getElementById('country').value = customer.country;
+    document.getElementById('balance').value = customer.balance;
+    document.getElementById('password').value = customer.password;
+}
+
+function toggleFormEditable(isEditable) {
+    const formInputs = customerForm.querySelectorAll('input');
+    formInputs.forEach(input => input.readOnly = !isEditable);
+    const commitButton = customerForm.querySelector('button[type="submit"]');
+    commitButton.style.display = isEditable ? 'block' : 'none';
+}
+
+function generateCustomerID() {
+    customerCount++;
+    document.getElementById('customerID').value = 'CUST' + ('000' + customerCount).slice(-3);
+}
+
+function getCurrentTime() {
+    const now = new Date();
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    return hours + ':' + minutes + ' ' + ampm;
+}
+
+function getCurrentDate() {
+    return new Date().toISOString().split('T')[0];
+}
+
+customerForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const newCustomer = {
+        customerID: document.getElementById('customerID').value,
+        name: document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value,
+        username: document.getElementById('username').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        country: document.getElementById('country').value,
+        balance: document.getElementById('balance').value,
+        password: document.getElementById('password').value,
+        timeJoined: getCurrentTime(),
+        dateJoined: getCurrentDate(),
+        status: 'Active'
+    };
+
+    if (editingCustomerIndex === null) {
+        addCustomerToTable(newCustomer);
+        saveCustomer(newCustomer);
+    } else {
+        updateCustomer(newCustomer, editingCustomerIndex);
+    }
+
+    popupOverlay.classList.remove('show-popup');
+    customerForm.reset();
+    generateCustomerID();
+});
+
+function addCustomerToTable(customer) {
+    const newRow = accountsTable.insertRow();
+    newRow.innerHTML = `
+        <td><input type="checkbox"></td>
+        <td>${customer.customerID}</td>
+        <td>${customer.name}</td>
+        <td>${customer.username}</td>
+        <td>${customer.email}</td>
+        <td>${customer.phone}</td>
+        <td>${customer.country}</td>
+        <td>${customer.balance}</td>
+        <td>${'*'.repeat(customer.password.length)}</td>
+        <td>${customer.timeJoined}</td>
+        <td>${customer.dateJoined}</td>
+        <td class="status active">${customer.status}</td>
+        <td>
+            <button class="view-btn" onclick="viewCustomer(${accountsTable.rows.length - 1})">View</button>
+            <button class="edit-btn" onclick="editCustomer(${accountsTable.rows.length - 1})">Edit</button>
+            <button class="delete-btn" onclick="deleteCustomer(${accountsTable.rows.length - 1})">Delete</button>
+        </td>
+    `;
+}
+
+function saveCustomer(customer) {
+    let customers = JSON.parse(localStorage.getItem('customers')) || [];
+    customers.push(customer);
+    localStorage.setItem('customers', JSON.stringify(customers));
+}
+
+function loadCustomers() {
+    let customers = JSON.parse(localStorage.getItem('customers')) || [];
+    customers.forEach((customer, index) => {
+        customer.index = index;
+        addCustomerToTable(customer);
+    });
+    customerCount = customers.length;
+}
+
+function viewCustomer(rowIndex) {
+    const customers = JSON.parse(localStorage.getItem('customers')) || [];
+    openPopup('view', customers[rowIndex]);
+}
+
+function editCustomer(rowIndex) {
+    const customers = JSON.parse(localStorage.getItem('customers')) || [];
+    openPopup('edit', customers[rowIndex]);
+}
+
+function updateCustomer(updatedCustomer, index) {
+    let customers = JSON.parse(localStorage.getItem('customers')) || [];
+    customers[index] = updatedCustomer;
+    localStorage.setItem('customers', JSON.stringify(customers));
+    accountsTable.rows[index].innerHTML = '';
+    addCustomerToTable(updatedCustomer);
+}
+
+function deleteCustomer(rowIndex) {
+    let customers = JSON.parse(localStorage.getItem('customers')) || [];
+    customers.splice(rowIndex, 1);
+    localStorage.setItem('customers', JSON.stringify(customers));
+    accountsTable.deleteRow(rowIndex);
+    loadCustomers();
+}
+</script>
+
       
         
       

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Creation Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Add Task</h2>
+        <form id="taskForm" onsubmit="saveTask(event)">
+            <label>Title of the Ad</label>
+            <input type="text" id="title" required>
+
+            <label>Duration (Seconds)</label>
+            <input type="number" id="duration" required>
+
+            <label>Maximum Show</label>
+            <input type="number" id="maxViews" required>
+
+            <label>Amount (USD)</label>
+            <input type="number" id="amount" step="0.01" required>
+
+            <label>Status</label>
+            <select id="status">
+                <option value="Active">Active</option>
+                <option value="Pending">Pending</option>
+            </select>
+
+            <label>Advertisement Type</label>
+            <select id="type">
+                <option value="URL">Link / URL</option>
+                <option value="YouTube Link">YouTube Link</option>
+            </select>
+
+            <label>Link</label>
+            <input type="url" id="link" required>
+
+            <label>Task Description</label>
+            <textarea id="description" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Load existing task if editing
+        function loadTask() {
+            const task = JSON.parse(localStorage.getItem('editTask'));
+            if (task) {
+                document.getElementById('title').value = task.title;
+                document.getElementById('duration').value = task.duration;
+                document.getElementById('maxViews').value = task.maxViews;
+                document.getElementById('amount').value = task.amount;
+                document.getElementById('status').value = task.status;
+                document.getElementById('type').value = task.type;
+                document.getElementById('link').value = task.link;
+                document.getElementById('description').value = task.description;
+            }
+        }
+
+        // Save task and return to dashboard
+        function saveTask(event) {
+            event.preventDefault();
+            const task = {
+                title: document.getElementById('title').value,
+                duration: document.getElementById('duration').value,
+                maxViews: document.getElementById('maxViews').value,
+                amount: parseFloat(document.getElementById('amount').value),
+                status: document.getElementById('status').value,
+                type: document.getElementById('type').value,
+                link: document.getElementById('link').value,
+                description: document.getElementById('description').value
+            };
+
+            // Save task to localStorage and go back to the dashboard
+            let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            tasks.push(task);
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            localStorage.removeItem('editTask');
+            window.location.href = 'task_dashboard.html'; // Redirect to dashboard
+        }
+
+        document.addEventListener('DOMContentLoaded', loadTask);
+    </script>
+</body>
+</html>
