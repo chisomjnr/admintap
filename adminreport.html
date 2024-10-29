@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Tapblox | Admin Dashboard</title>
+    <title>Tapblox | Transaction Logs</title>
 
     <!-- Montserrat Font -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -30,10 +30,10 @@
           <span class="material-icons-outlined">search</span>
         </div>
         <div class="header-right">
-          <span ><a  href="adminextra.html">Transaction Hostory</a></span>
+          <span ><a  id="ac" href="adminextra.html">Transaction Hostory</a></span>
         <span ><a href="adminextracatche.html">Login History</a></span>
         <span ><a href="adminextraserver.html">Notification History</a></span>
-        <span ><a id="ac" href="adminextraapp.html">PTC View Log</a></span>
+        <span ><a href="adminextraapp.html">PTC View Log</a></span>
 
  
       </div>
@@ -180,7 +180,158 @@
 
 
 
-
+        <style>
+          * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+              font-family: poppins, sans-serif;
+          }
+   
+          .container {
+              width: 100%;
+              background-color: white;
+              padding: 40px;
+              border-radius: 8px;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          }
+          .title {
+              font-size: 26px;
+              font-weight: bold;
+              color: #333;
+              margin-bottom: 20px;
+          }
+          .filter {
+              display: flex;
+              gap: 15px;
+              margin-bottom: 20px;
+          }
+          .filter input[type="text"],
+          .filter select {
+              padding: 10px;
+              border: 1px solid #323232;
+              border-radius: 5px;
+              font-size: 14px;
+              width: 100%;
+          }
+          .filter button {
+              padding: 10px 20px;
+              border: none;
+              background-color: orange;
+              color: white;
+              font-weight: bold;
+              border-radius: 5px;
+              cursor: pointer;
+              font-size: 14px;
+          }
+          .table {
+              width: 100%;
+              border-collapse: collapse;
+              margin-top: 10px;
+              border-radius: 8px;
+              overflow: hidden;
+          }
+          .table thead {
+              background-color: #000000;
+              color: white;
+          }
+          .table th, .table td {
+              padding: 15px;
+              text-align: left;
+              font-size: 14px;
+              color: #6b6b6b;
+              border-bottom: 1px solid #e8e8e8;
+          }
+          .table th {
+              font-weight: bold;
+              text-transform: uppercase;
+          }
+          .user-link {
+              color: #3b82f6;
+              font-size: 12px;
+              text-decoration: none;
+          }
+          .amount-red {
+              color: #e63946;
+              font-weight: bold;
+          }
+          .amount-green {
+              color: #38b000;
+              font-weight: bold;
+          }
+      </style>
+  </head>
+  <body>
+      <div class="container">
+          <div class="title">Transaction Logs</div>
+          <div class="filter">
+              <input type="text" placeholder="TRX/Username">
+              <select>
+                  <option>Type</option>
+                  <option>All</option>
+              </select>
+              <select>
+                  <option>Remark</option>
+                  <option>All</option>
+              </select>
+              <input type="text" placeholder="Start Date - End Date">
+              <button>Filter</button>
+          </div>
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th>User</th>
+                      <th>TRX</th>
+                      <th>Transacted</th>
+                      <th>Amount</th>
+                      <th>Post Balance</th>
+                      <th>Details</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>nana ama <br><a href="#" class="user-link">@sammycareetedf</a></td>
+                      <td>5LZFTJJNDURX</td>
+                      <td>2024-10-29 05:19 AM<br>4 hours ago</td>
+                      <td class="amount-red">- $0.50 USD</td>
+                      <td>$0.75 USD</td>
+                      <td>PTC ad create</td>
+                  </tr>
+                  <tr>
+                      <td>nana ama <br><a href="#" class="user-link">@sammycareetedf</a></td>
+                      <td>X2OROTJMUM3S</td>
+                      <td>2024-10-29 05:14 AM<br>4 hours ago</td>
+                      <td class="amount-green">+ $0.75 USD</td>
+                      <td>$1.25 USD</td>
+                      <td>Earn amount from ads</td>
+                  </tr>
+                  <tr>
+                      <td>nana ama <br><a href="#" class="user-link">@sammycareetedf</a></td>
+                      <td>B9AY9SQUAYNA</td>
+                      <td>2024-10-29 05:11 AM<br>4 hours ago</td>
+                      <td class="amount-green">+ $0.50 USD</td>
+                      <td>$0.50 USD</td>
+                      <td>Registration Bonus</td>
+                  </tr>
+                  <tr>
+                      <td>Mofiz Pagla <br><a href="#" class="user-link">@mofiz</a></td>
+                      <td>EXU6S9DSLFIA</td>
+                      <td>2024-10-28 10:24 PM<br>11 hours ago</td>
+                      <td class="amount-green">+ $0.15 USD</td>
+                      <td>$21.72 USD</td>
+                      <td>1st level referral commission from username</td>
+                  </tr>
+                  <tr>
+                      <td>User Name <br><a href="#" class="user-link">@username</a></td>
+                      <td>EXU6S9DSLFIA</td>
+                      <td>2024-10-28 10:24 PM<br>11 hours ago</td>
+                      <td class="amount-green">+ $0.75 USD</td>
+                      <td>$18.03 USD</td>
+                      <td>Earn amount from ads</td>
+                  </tr>
+              </tbody>
+          </table>
+      </d
 
 
 
